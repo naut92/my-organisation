@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
+@Table(name = "employee")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,4 +27,9 @@ public class Employee {
 
     @JsonIgnore
     private String passConfirm;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "department_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Department departmentById;
 }

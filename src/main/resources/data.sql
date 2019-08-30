@@ -6,3 +6,10 @@ INSERT INTO employee (firstname, lastname, email, pass, pass_confirm) VALUES
 ('user5-fn', 'user5-ln', 'email5@email.com', '12A34', '12A34'),
 ('user6-fn', 'user6-ln', 'email6@email.com', '12A34', '12A34'),
 ('user7-fn', 'user7-ln', 'email7@email.com', '12A34', '12A34');
+
+
+INSERT INTO department (depart_name, position) VALUES
+('department1', 'position1'),
+('department2', 'position2'),
+('department3', 'position1'),
+('department4', 'position3');
