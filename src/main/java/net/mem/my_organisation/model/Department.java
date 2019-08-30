@@ -13,7 +13,9 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     String depart_name;
-    String position;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "departmentById", cascade = CascadeType.ALL)
+    private List<Position> positionById;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "departmentById", cascade = CascadeType.ALL)
     private List<Employee> employeeById;

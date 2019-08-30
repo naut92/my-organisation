@@ -19,6 +19,14 @@ public class Employee {
     private String email;
 
     @Basic
+    @Column(name = "department_id")
+    private Long department_id;
+
+    @Basic
+    @Column(name = "position_name")
+    private Long position_id;
+
+    @Basic
     @Column(name = "pass")
     @Length(min = 5, max = 80, message = "*Your password must have at least 5 characters")
     @NotNull(message = "*Please provide your password")
@@ -32,4 +40,9 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "department_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Department departmentById;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "position_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Department positionById;
 }
