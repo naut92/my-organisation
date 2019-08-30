@@ -9,7 +9,7 @@ spring:
     platform: h2
     driverClassName: org.h2.Driver
     url: jdbc:h2:~/my-organisation_db;DB_CLOSE_ON_EXIT=FALSE; #AUTO_SERVER=TRUE
-    #url: jdbc:h2:mem:animals_db; #DB_CLOSE_DELAY=-1 #DB_CLOSE_DELAY=-1;
+
     #password:   #h2
   #<----------End H2----------->
 

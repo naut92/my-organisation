@@ -8,7 +8,6 @@ import net.mem.my_organisation.services.EmployeeService;
 import net.mem.my_organisation.services.PositionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +16,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @Api(value = "Employees App Management System", description="Operations pertaining to employee in Employees App Management System")
