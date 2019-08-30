@@ -1,6 +1,7 @@
 package net.mem.my_organisation.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
@@ -10,6 +11,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @Entity
 @Table(name = "employee")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,5 +46,5 @@ public class Employee {
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "position_id", referencedColumnName = "id", insertable = false, updatable = false)
-    private Department positionById;
+    private Position positionById;
 }

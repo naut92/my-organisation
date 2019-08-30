@@ -11,3 +11,6 @@
 
 
 # server-port: 8082
+
+
+curl -X DELETE http://localhost:8082/delete/1

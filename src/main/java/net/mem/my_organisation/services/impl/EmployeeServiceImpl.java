@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -32,6 +33,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    public Employee getEmployeeById(Long employeeId) {
+        Employee employee = employeeRepository.getOne(employeeId);
+        if(employee != null) return employee;
+        else throw new EntityNotFoundException();
+    }
+
+    @Override
     public List<Employee> findEmployeeByDepartmentId(Long departmentId) {
         Department d = departmentRepository.getOne(departmentId);
         if(d != null) return d.getEmployeeById();
@@ -43,5 +51,32 @@ public class EmployeeServiceImpl implements EmployeeService {
         Position p = positionRepository.getOne(positionId);
         if(p != null) return p.getEmployeeById();
         else throw new EntityNotFoundException();
+    }
+
+    @Override
+    public Employee updateEmployee(Long employeeId, Employee employee) {
+        Employee employeeUPD = employeeRepository.getOne(employeeId);
+        employeeUPD.setFirstname(employee.getFirstname());
+        employeeUPD.setLastname(employee.getLastname());
+        employeeUPD.setEmail(employee.getEmail());
+        employeeUPD.setDepartment_id(employee.getDepartment_id());
+        employeeUPD.setPosition_id(employee.getPosition_id());
+        employeeUPD.setDepartmentById(employee.getDepartmentById());
+        employeeUPD.setPositionById(employee.getPositionById());
+        employeeRepository.save(employeeUPD);
+        return employeeUPD;
+    }
+
+    @Override
+    public Employee createEmployee(Employee employee) {
+        //employee.setDepartment_id(employee.getDepartment_id());
+        //employee.setPosition_id(employee.getPosition_id());
+        employeeRepository.save(employee);
+        return employee;
+    }
+
+    @Override
+    public void deleteById(Long employeeId) {
+        employeeRepository.deleteById(employeeId);
     }
 }
