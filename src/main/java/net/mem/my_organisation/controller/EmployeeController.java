@@ -9,6 +9,7 @@ import net.mem.my_organisation.services.PositionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
@@ -22,9 +23,9 @@ public class EmployeeController {
     private final EmployeeService employeeService;
     private final PositionService positionService;
 
-    public EmployeeController(EmployeeService service, PositionService positionService) {
-        this.employeeService = service;
-        this.positionService = positionService;
+    public EmployeeController(EmployeeService s, PositionService ps) {
+        this.employeeService = s;
+        this.positionService = ps;
     }
 
     //for dev-mode only:
@@ -40,4 +41,17 @@ public class EmployeeController {
     public Collection<Position> getAllPositions(){
         return positionService.getAllPositions();
     }
+
+    @GetMapping("/department/{departmentId}")
+    public List<Employee> findEmployeeByDepartmentId(@PathVariable("departmentId") Long departmentId) {
+        log.info("Employee find: departmentId={}", departmentId);
+        return employeeService.findEmployeeByDepartmentId(departmentId);
+    }
+
+    @GetMapping("/position/{positionId}")
+    public List<Employee> findEmployeeByPositionId(@PathVariable("positionId") Long positionId) {
+        log.info("Employee find: positionId={}", positionId);
+        return employeeService.findEmployeeByPositionId(positionId);
+    }
+
 }
