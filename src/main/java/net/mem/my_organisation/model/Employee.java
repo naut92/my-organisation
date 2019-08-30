@@ -23,7 +23,7 @@ public class Employee {
     private Long department_id;
 
     @Basic
-    @Column(name = "position_name")
+    @Column(name = "position_id")
     private Long position_id;
 
     @Basic
