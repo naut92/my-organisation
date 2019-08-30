@@ -13,4 +13,7 @@
 # server-port: 8082
 
 
+swagger2 doc:
+http://localhost:8082/swagger-ui.html#
+
 curl -X DELETE http://localhost:8082/delete/1

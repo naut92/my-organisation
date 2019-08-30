@@ -22,7 +22,7 @@ public class MyOrganisationApplication {
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
-				.apis(RequestHandlerSelectors.basePackage("my_organisation.controller"))
+				.apis(RequestHandlerSelectors.basePackage("net.mem.my_organisation.controller"))
 				.paths(PathSelectors.any())
 				.build()
 				.apiInfo(new ApiInfoBuilder().version("1.0").title("My-Organisation API").description("Documentation My-Organisation API v1.0").build());
