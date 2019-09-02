@@ -13,7 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import javax.persistence.EntityNotFoundException;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -72,9 +72,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeUPD.setDepartment_id(employee.getDepartment_id());
         employeeUPD.setPosition_id(employee.getPosition_id());
 
-        //String p = "12A34";
-        BCryptPasswordEncoder pe = new BCryptPasswordEncoder();
-        String encPassword = pe.encode(employee.getPass());
+        String encPassword = "12A34";
+        //BCryptPasswordEncoder pe = new BCryptPasswordEncoder();
+        //String encPassword = pe.encode(employee.getPass());
 
         //System.out.println("encPassword: " + encPassword);
         employeeUPD.setPass(encPassword);
@@ -89,8 +89,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee createEmployee(Employee employee) {
         employee.setDepartment_id(employee.getDepartment_id());
         employee.setPosition_id(employee.getPosition_id());
-        employeeRepository.save(employee);
-        return employee;
+        BCryptPasswordEncoder pe = new BCryptPasswordEncoder();
+        String encPassword = pe.encode(employee.getPass());
+        employee.setPass(encPassword);
+        return employeeRepository.save(employee);
     }
 
     @Override
