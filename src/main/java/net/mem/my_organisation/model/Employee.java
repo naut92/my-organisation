@@ -33,7 +33,7 @@ public class Employee {
     @Column(name = "pass")
     @Length(min = 5, max = 80, message = "*Your password must have at least 5 characters")
     @NotNull(message = "*Please provide your password")
-    @JsonIgnore
+    //@JsonIgnore
     private String pass;
 
     @ToString.Exclude

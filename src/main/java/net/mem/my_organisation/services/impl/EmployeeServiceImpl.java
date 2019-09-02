@@ -57,19 +57,21 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee updateEmployee(Long employeeId, Employee employee) {
+        System.out.println("if pf hgkg");
+
         Employee employeeUPD = employeeRepository.getOne(employeeId);
+        Position position = positionRepository.getOne(employee.getPosition_id());
+        Department department = departmentRepository.getOne(employee.getDepartment_id());
+
+        System.out.println("start =============");
+
+        employeeUPD.setPositionById(position);
+        employeeUPD.setDepartmentById(department);
         employeeUPD.setFirstname(employee.getFirstname());
         employeeUPD.setLastname(employee.getLastname());
         employeeUPD.setEmail(employee.getEmail());
         employeeUPD.setDepartment_id(employee.getDepartment_id());
         employeeUPD.setPosition_id(employee.getPosition_id());
-
-        Position position = employeeUPD.getPositionById();
-        Department department = employeeUPD.getDepartmentById();
-
-        employeeUPD.setPositionById(position);
-        employeeUPD.setDepartmentById(department);
-
 
         String p = "12A34";
         //BCryptPasswordEncoder pe = new BCryptPasswordEncoder();
@@ -77,6 +79,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         //System.out.println("encPassword: " + encPassword);
         //employeeUPD.setPass(encPassword);
+        employeeUPD.setPass(employee.getPass());
 
         Employee e = employeeRepository.save(employeeUPD);
         System.out.println("new Employee pass: " + e.getPass());
@@ -86,8 +89,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee createEmployee(Employee employee) {
-        //employee.setDepartment_id(employee.getDepartment_id());
-        //employee.setPosition_id(employee.getPosition_id());
+        employee.setDepartment_id(employee.getDepartment_id());
+        employee.setPosition_id(employee.getPosition_id());
         employeeRepository.save(employee);
         return employee;
     }

@@ -58,13 +58,15 @@ public class EmployeeController {
     @ApiOperation(value = "Update Employee")
     @PutMapping("/upd/{employeeId}")
     public ResponseEntity<Employee> updateEmployee(@PathVariable Long employeeId, @Valid @RequestBody Employee employee) {
+        System.out.println("employeeId " + employeeId);
+        System.out.println("employee " + employee );
         log.warn("Request to update Employee={}", employee);
         Employee result = employeeService.updateEmployee(employeeId, employee);
         return ResponseEntity.ok().body(result);
     }
 
     @ApiOperation(value = "Add Employee")
-    @PostMapping("/new/{employeeId}")
+    @PostMapping("/new/employee")
     public ResponseEntity<Employee> createEmployee
             (@Valid @RequestBody Employee employee) throws URISyntaxException {
         log.warn("Request to create Employee={}", employee);
