@@ -1,6 +1,7 @@
 package net.mem.my_organisation.model;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,8 +15,10 @@ public class Department {
     private Long id;
     String depart_name;
 
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "departmentById", cascade = CascadeType.ALL)
     private List<Position> positionById;
+
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "departmentById", cascade = CascadeType.ALL)
     private List<Employee> employeeById;

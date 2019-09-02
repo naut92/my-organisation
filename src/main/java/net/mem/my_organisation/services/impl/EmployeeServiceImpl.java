@@ -9,6 +9,8 @@ import net.mem.my_organisation.repository.PositionRepository;
 import net.mem.my_organisation.services.EmployeeService;
 import org.springframework.stereotype.Service;
 
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import javax.persistence.EntityNotFoundException;
 import java.util.Collection;
 import java.util.List;
@@ -61,9 +63,24 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeUPD.setEmail(employee.getEmail());
         employeeUPD.setDepartment_id(employee.getDepartment_id());
         employeeUPD.setPosition_id(employee.getPosition_id());
-        employeeUPD.setDepartmentById(employee.getDepartmentById());
-        employeeUPD.setPositionById(employee.getPositionById());
-        employeeRepository.save(employeeUPD);
+
+        Position position = employeeUPD.getPositionById();
+        Department department = employeeUPD.getDepartmentById();
+
+        employeeUPD.setPositionById(position);
+        employeeUPD.setDepartmentById(department);
+
+
+        String p = "12A34";
+        //BCryptPasswordEncoder pe = new BCryptPasswordEncoder();
+        //String encPassword = pe.encode(employee.getPass());
+
+        //System.out.println("encPassword: " + encPassword);
+        //employeeUPD.setPass(encPassword);
+
+        Employee e = employeeRepository.save(employeeUPD);
+        System.out.println("new Employee pass: " + e.getPass());
+
         return employeeUPD;
     }
 

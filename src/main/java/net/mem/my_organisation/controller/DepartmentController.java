@@ -2,8 +2,6 @@ package net.mem.my_organisation.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import net.mem.my_organisation.model.Department;
-import net.mem.my_organisation.model.Employee;
 import net.mem.my_organisation.services.DepartmentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +25,7 @@ public class DepartmentController {
     //for dev-mode only:
     @ApiOperation(value = "View a list of available departments", response = List.class)
     @GetMapping("/departments")
-    public Collection<Department> getAllDepartments(){
+    public Collection<String> getAllDepartments(){
         return departmentService.getAllDepartments();
     }
 }

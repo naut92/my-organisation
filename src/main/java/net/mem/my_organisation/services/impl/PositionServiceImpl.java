@@ -5,7 +5,10 @@ import net.mem.my_organisation.repository.PositionRepository;
 import net.mem.my_organisation.services.PositionService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PositionServiceImpl implements PositionService {
@@ -17,7 +20,10 @@ public class PositionServiceImpl implements PositionService {
     }
 
     @Override
-    public Collection<Position> getAllPositions() {
-        return positionRepository.findAll();
+    //public Collection<Position> getAllPositions() {
+        //return positionRepository.findAll();
+    public Collection <String> getAllPositions() {
+        List<Position> positions = positionRepository.findAll();
+        return positions.stream().map(Position::getPosition_name).collect(Collectors.toCollection(() -> new ArrayList<>()));
     }
 }

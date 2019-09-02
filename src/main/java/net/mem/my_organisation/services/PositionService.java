@@ -5,5 +5,6 @@ import net.mem.my_organisation.model.Position;
 import java.util.Collection;
 
 public interface PositionService {
-    Collection<Position> getAllPositions();
+    //Collection<Position> getAllPositions();
+    Collection<String> getAllPositions();
 }

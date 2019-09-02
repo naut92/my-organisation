@@ -23,11 +23,9 @@ public class EmployeeController {
     private final Logger log = LoggerFactory.getLogger(EmployeeController.class);
 
     private final EmployeeService employeeService;
-    private final PositionService positionService;
 
-    public EmployeeController(EmployeeService s, PositionService ps) {
+    public EmployeeController(EmployeeService s) {
         this.employeeService = s;
-        this.positionService = ps;
     }
 
     //for dev-mode only:
@@ -35,13 +33,6 @@ public class EmployeeController {
     @GetMapping("/employees")
     public Collection<Employee> getAllEmployees(){
         return employeeService.getAllEmployees();
-    }
-
-    //for dev-mode only:
-    @ApiOperation(value = "View a list of available positions", response = List.class)
-    @GetMapping("/positions")
-    public Collection<Position> getAllPositions(){
-        return positionService.getAllPositions();
     }
 
     @GetMapping("/employee/{employeeId}")

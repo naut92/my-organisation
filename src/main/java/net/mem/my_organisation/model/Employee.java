@@ -3,6 +3,7 @@ package net.mem.my_organisation.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -35,14 +36,13 @@ public class Employee {
     @JsonIgnore
     private String pass;
 
-    @JsonIgnore
-    private String passConfirm;
-
+    @ToString.Exclude
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "department_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Department departmentById;
 
+    @ToString.Exclude
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "position_id", referencedColumnName = "id", insertable = false, updatable = false)

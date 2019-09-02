@@ -5,5 +5,6 @@ import net.mem.my_organisation.model.Department;
 import java.util.Collection;
 
 public interface DepartmentService {
-    Collection<Department> getAllDepartments();
+    //Collection<Department> getAllDepartments();
+    Collection<String> getAllDepartments();
 }
