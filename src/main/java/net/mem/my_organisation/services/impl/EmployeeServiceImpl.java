@@ -56,13 +56,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee updateEmployee(Long employeeId, Employee employee) {
-        System.out.println("if pf hgkg");
-
         Employee employeeUPD = employeeRepository.getOne(employeeId);
         Position position = positionRepository.getOne(employee.getPosition_id());
         Department department = departmentRepository.getOne(employee.getDepartment_id());
-
-        System.out.println("start =============");
 
         employeeUPD.setPositionById(position);
         employeeUPD.setDepartmentById(department);
