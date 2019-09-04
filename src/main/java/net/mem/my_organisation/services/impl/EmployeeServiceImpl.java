@@ -8,7 +8,7 @@ import net.mem.my_organisation.repository.EmployeeRepository;
 import net.mem.my_organisation.repository.PositionRepository;
 import net.mem.my_organisation.services.EmployeeService;
 import org.springframework.stereotype.Service;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.Collection;
@@ -41,6 +41,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    public Employee findEmployeeByEmail(String employeeEmail) {
+        return employeeRepository.findEmployeeByEmail(employeeEmail);
+    }
+
+    @Override
     public List<Employee> findEmployeeByDepartmentId(Long departmentId) {
         Department d = departmentRepository.getOne(departmentId);
         if(d != null) return d.getEmployeeById();
@@ -68,9 +73,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeUPD.setDepartment_id(employee.getDepartment_id());
         employeeUPD.setPosition_id(employee.getPosition_id());
 
-        String encPassword = "12A34";
-        //BCryptPasswordEncoder pe = new BCryptPasswordEncoder();
-        //String encPassword = pe.encode(employee.getPass());
+        //String encPassword = "12A34";
+        BCryptPasswordEncoder pe = new BCryptPasswordEncoder();
+        String encPassword = pe.encode(employee.getPass());
 
         //System.out.println("encPassword: " + encPassword);
         employeeUPD.setPass(encPassword);

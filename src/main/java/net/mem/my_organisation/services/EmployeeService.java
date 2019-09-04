@@ -20,4 +20,6 @@ public interface EmployeeService {
     void deleteById(Long employeeId);
 
     Employee getEmployeeById(Long employeeId);
+
+    Employee findEmployeeByEmail(String employeeEmail);
 }

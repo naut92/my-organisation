@@ -8,6 +8,8 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
+import java.util.Set;
 
 @Data
 @Entity
@@ -47,4 +49,13 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "position_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Position positionById;
+/*
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "employee_role",
+            //foreign key for RolesEntity in customer_role table
+            joinColumns = @JoinColumn(name = "employee_id"),
+            //foreign key for other side - Customer in customer_role table
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<RolesEntity> roles;*/
 }

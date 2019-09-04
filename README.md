@@ -21,3 +21,10 @@ curl -X DELETE http://localhost:8082/delete/1
 curl -X PUT -H "Content-Type: application/json" -d '{"id":2,"firstname":"UPD-user-fn","lastname":"UPD-user-ln","email":"UPD-email2@email.89999","department_id":3,"position_id":3,"pass":"ASDEWQ6667"}' http://localhost:8082/upd/2
 
 curl -H "Content-Type: application/json" -X POST -d '{"firstname":"NEW-user","lastname":"NEW-user-ln","email":"NEW-email2@email.89999","department_id":1,"position_id":3,"pass":"NEWPass7763"}' http://localhost:8082/new/employee
+
+
+#Basic authentication:
+
+user: admin
+
+pass: pass
